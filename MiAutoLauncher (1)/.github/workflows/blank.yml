@@ -9,8 +9,15 @@ jobs:
         with: { distribution: temurin, java-version: 17 }
       - uses: gradle/actions/setup-gradle@v3
         with: { gradle-version: 8.7 }
-      - run: gradle assembleDebug --no-daemon
+      - name: Ver archivos
+        run: find . -not -path './.git/*' -maxdepth 3 | head -60
+      - name: Compilar
+        run: |
+          F=$(find . -name settings.gradle.kts -not -path './.git/*' | head -n1)
+          if [ -z "$F" ]; then echo "NO HAY settings.gradle.kts EN EL REPOSITORIO"; exit 1; fi
+          cd "$(dirname "$F")"
+          gradle assembleDebug --no-daemon
       - uses: actions/upload-artifact@v4
         with:
-      - run: gradle assembleDebug --no-daemon
-        working-directory: MiAutoLauncher
+          name: MiAutoLauncher-apk
+          path: "**/app-debug.apk"
