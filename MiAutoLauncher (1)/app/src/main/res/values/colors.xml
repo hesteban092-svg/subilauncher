@@ -1,0 +1,8 @@
+<resources>
+    <color name="bg">#E8EFF9</color>
+    <color name="panel">#E8FFFFFF</color>
+    <color name="stroke">#2F6FDB</color>
+    <color name="text">#0B1B33</color>
+    <color name="textSub">#3F5578</color>
+    <color name="alert">#D93025</color>
+</resources>
